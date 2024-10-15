@@ -1,17 +1,14 @@
 import { mockOne, mockTwo, mockThree, unmockedFunction } from './index';
 
-const stubFunction = () => {
-  // nothing
-};
-
 jest.mock('./index', () => {
   const originalModule =
     jest.requireActual<typeof import('./index')>('./index');
   return {
+    __esModule: true,
     ...originalModule,
-    mockOne: stubFunction,
-    mockTwo: stubFunction,
-    mockThree: stubFunction,
+    mockOne: () => undefined,
+    mockTwo: () => undefined,
+    mockThree: () => undefined,
   };
 });
 
